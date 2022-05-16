@@ -3,10 +3,15 @@ package com.masantello.demo.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="cliente")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
+	@Id
+	private String id;
 	private String nome;
 	private String email;
 	private String CPF;
@@ -15,18 +20,19 @@ public class Cliente implements Serializable {
 		
 	}
 
-	public Cliente(Integer id, String nome, String email, String cPF) {
+	public Cliente(String id, String nome, String email, String cPF) {
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		CPF = cPF;
+		this.CPF = cPF;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -51,7 +57,7 @@ public class Cliente implements Serializable {
 	}
 
 	public void setCPF(String cPF) {
-		CPF = cPF;
+		this.CPF = cPF;
 	}
 
 	@Override
@@ -70,8 +76,5 @@ public class Cliente implements Serializable {
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
 	
 }
