@@ -1,6 +1,7 @@
 package com.masantello.demo.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masantello.demo.ClienteDto;
 import com.masantello.demo.model.Cliente;
 import com.masantello.demo.services.ClienteService;
 
@@ -21,9 +23,9 @@ public class ClienteController {
 	private ClienteService service;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Cliente>> findAll(){
+	public ResponseEntity<List<ClienteDto>> findAll(){
 		List<Cliente> list = service.listAll();		
-		
-		return ResponseEntity.ok().body(list);
+		List<ClienteDto> listDto = list.stream().map(obj -> new ClienteDto(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 }
