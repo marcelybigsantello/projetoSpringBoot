@@ -1,6 +1,7 @@
-package com.masantello.demo;
+package com.masantello.demo.dto;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 import com.masantello.demo.model.Cliente;
 
@@ -17,11 +18,11 @@ public class ClienteDto implements Serializable{
 		
 	}
 	
-	public ClienteDto(Cliente obj) {
-		this.id = obj.getId();
-		this.nome = obj.getNome();
-		this.email = obj.getEmail();
-		this.CPF = obj.getCPF();
+	public ClienteDto(Cliente cliente) {
+		this.id = cliente.getId();
+		this.nome = cliente.getNome();
+		this.email = cliente.getEmail();
+		this.CPF = cliente.getCPF();
 	}
 
 	public String getId() {
